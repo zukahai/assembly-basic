@@ -1,11 +1,11 @@
 .model tiny
 .stack 100h
 .data
-    tb1 db 'Nhap so thu nhat : $'
-    tb2 db 13,10,'Nhap so thu hai : $'
-    tb3 db 13,10,'Tong hai so la : $'
-    so1 db 0
-    so2 db 0
+    tb1 db 'Enter first number : $'
+    tb2 db 13,10,'Enter second number : $'
+    tb3 db 13,10,'Sum two numbers is : $'
+    number1 db 0
+    number2 db 0
 .code
     main proc
         mov ax,@data
@@ -14,65 +14,62 @@
         lea dx,tb1
         mov ah,9
         int 21h
-        nhapso1:
+        read_number_1:
             mov ah,1
             int 21h
             cmp al,13
-            je hientb2
+            je display_notification_2
             sub al,30h
             mov cl,al
-            mov al,so1
+            mov al,number1
             mov bl,10
             mul bl
             add al,cl
-            mov so1,al
-            jmp nhapso1
+            mov number1,al
+            jmp read_number_1
            
-        hientb2:
+        display_notification_2:
             lea dx,tb2
             mov ah,9
             int 21h
-        nhapso2:
+        read_number_2:
             mov ah,1
             int 21h
             cmp al,13
-            je hientb3
+            je display_notification_3
             sub al,30h
             mov cl,al
-            mov al,so2
+            mov al,number2
             mov bl,10
             mul bl
             add al,cl
-            mov so2,al
-            jmp nhapso2
-        hientb3:
+            mov number2,al
+            jmp read_number_2
+        display_notification_3:
             lea dx,tb3
             mov ah,9
             int 21h
-        ;==TONG 2 SO BYTE==
-        mov al,so1
-        add al,so2
+        mov al,number1
+        add al,number2
         mov ah,0
         mov cx,0
         mov bl,10
-        ;chia de tach so
-        chia:
+        sum_to_stack:
             div bl
             push ax
             inc cx
             cmp al,0
-            je hien
+            je display_result
             mov ah,0
-            jmp chia
-        hien:
+            jmp sum_to_stack
+        display_result:
             pop ax
             mov dl,ah
             add dl,30h
             mov ah,2
             int 21h
-            loop hien
-        ;thoat chuong trinh           
-        thoat:       
+            loop display_result ;cx >0 
+        exit_programing:       
         mov ah,76
         int 21h
         main endp
