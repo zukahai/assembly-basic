@@ -2,8 +2,8 @@
 .stack 100h
 .data
     tb1 db 'Enter first number : $'
-    tb2 db 13,10,'Enter second number : $'
-    tb3 db 13,10,'Sub two numbers is : $'
+    tb2 db 13, 10, 'Enter second number : $'
+    tb3 db 13, 10, 'Sum two numbers is : $'
     number1 db 0
     number2 db 0
 .code
@@ -22,8 +22,8 @@
     
     ;===================== Read data =====================;
     load_data proc
-        mov ax,@data
-        mov ds,ax
+        mov ax, @data
+        mov ds, ax
         ret
     load_data endp
 
@@ -91,29 +91,29 @@
 
     ;=====================cal sum=====================;
     calulation_sum proc
-        mov al,number1
-        add al,number2
-        mov ah,0
+        mov al, number1
+        add al, number2
+        mov ah, 0
     calulation_sum endp
 
     ;=====================Display al=====================;
     display_result proc
-        mov cx,0
-        mov bl,10
+        mov cx, 0
+        mov bl, 10
         sum_to_stack:
             div bl
             push ax
             inc cx
-            cmp al,0
+            cmp al, 0
             je display
-            mov ah,0
+            mov ah, 0
             jmp sum_to_stack
 
         display:
             pop ax
-            mov dl,ah
-            add dl,30h
-            mov ah,2
+            mov dl, ah
+            add dl, 30h
+            mov ah, 2
             int 21h
             loop display ;cx >0 
     display_result endp
