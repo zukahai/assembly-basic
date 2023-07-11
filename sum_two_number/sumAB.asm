@@ -11,9 +11,11 @@
         mov ax,@data
         mov ds,ax
        
-        lea dx,tb1
-        mov ah,9
-        int 21h
+        display_notification_1:
+            lea dx,tb1
+            mov ah,9
+            int 21h
+            
         read_number_1:
             mov ah,1
             int 21h
@@ -32,6 +34,7 @@
             lea dx,tb2
             mov ah,9
             int 21h
+
         read_number_2:
             mov ah,1
             int 21h
@@ -45,23 +48,26 @@
             add al,cl
             mov number2,al
             jmp read_number_2
+
         display_notification_3:
             lea dx,tb3
             mov ah,9
             int 21h
+
         mov al,number1
         add al,number2
         mov ah,0
         mov cx,0
         mov bl,10
+
         sum_to_stack:
             div bl
             push ax
             inc cx
             cmp al,0
             je display_result
-            mov ah,0
             jmp sum_to_stack
+
         display_result:
             pop ax
             mov dl,ah
@@ -69,6 +75,7 @@
             mov ah,2
             int 21h
             loop display_result ;cx >0 
+
         exit_programing:       
         mov ah,76
         int 21h
