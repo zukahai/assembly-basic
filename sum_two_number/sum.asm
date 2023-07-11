@@ -16,8 +16,32 @@
         call display_notification_2
         call read_number_2
         call display_notification_3
-        call calculate_sum
-        call display_result
+
+        mov al,number1
+        add al,number2
+        mov ah,0
+        mov cx,0
+        mov bl,10
+
+        sum_to_stack:
+            div bl
+            push ax
+            inc cx
+            cmp al,0
+            je display_result
+            jmp sum_to_stack
+
+
+        display_result:
+            pop ax
+            mov dl,ah
+            add dl,30h
+            mov ah,2
+            int 21h
+            loop display_result ;cx >0 
+            
+        ; call calculate_sum
+        ; call display_result
         call exit_program
 
         main endp
@@ -79,35 +103,34 @@
         ret
     display_notification_3 endp
     
-    calculate_sum proc
-        mov al, number1
-        add al, number2
-        mov ah, 0
-        mov cx, 0
-        mov bl, 10
+    ; calculate_sum proc
+    ;     mov al, number1
+    ;     add al, number2
+    ;     mov ah, 0
+    ;     mov cx, 0
+    ;     mov bl, 10
 
-        sum_to_stack:
-            div bl
-            push ax
-            inc cx
-            cmp al, 0
-            je calculate_sum_exit
-            jmp sum_to_stack
+    ;     sum_to_stack:
+    ;         div bl
+    ;         push ax
+    ;         inc cx
+    ;         cmp al, 0
+    ;         je calculate_sum_exit
+    ;         jmp sum_to_stack
 
-        calculate_sum_exit:
-        ret
-    calculate_sum endp
+    ;     calculate_sum_exit:
+    ;     ret
+    ; calculate_sum endp
     
-    display_result proc
-        ; pop ax
-        ; mov dl, ah
-        ; add dl, 30h
-        ; mov ah, 2
-        ; int 21h
-        ; loop display_result ; cx > 0
-        ; ret
-        call display_notification_1
-    display_result endp
+    ; display_result proc
+    ;     ; pop ax
+    ;     ; mov dl, ah
+    ;     ; add dl, 30h
+    ;     ; mov ah, 2
+    ;     ; int 21h
+    ;     ; loop display_result ; cx > 0
+    ;     ret
+    ; display_result endp
     
     exit_program proc
         mov ah, 76
