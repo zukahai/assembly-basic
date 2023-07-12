@@ -36,8 +36,8 @@
     check_divisible:
         mov al, bl
         mul bl
-        cmp al, number   ; So sánh giá trị của bl với số cần kiểm tra
-        jg is_prime   ; Nếu bl > số cần kiểm tra, số là số nguyên tố
+        cmp al, number   ; So sánh giá trị của bl*bl với số cần kiểm tra
+        jg is_prime   ; Nếu bl*bl > số cần kiểm tra, số là số nguyên tố
 
         mov al, number   ; Di chuyển số cần kiểm tra vào thanh ghi ax
         mov ah, 0
