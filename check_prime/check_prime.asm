@@ -22,39 +22,39 @@
 
     ;===================== Solve=====================;
     check_prime proc
-    call display_notification_1
-    mov number, 0
-    call read_number
+        call display_notification_1
+        mov number, 0
+        call read_number
 
-    ; Kiểm tra xem số nhập vào có phải là số nguyên tố hay không
-    mov bl, 2     ; Bắt đầu kiểm tra từ số 2
-    mov dx, 0     ; Khởi tạo dx = 0 để kiểm tra phần dư
+        ; Kiểm tra xem số nhập vào có phải là số nguyên tố hay không
+        mov bl, 2     ; Bắt đầu kiểm tra từ số 2
+        mov dx, 0     ; Khởi tạo dx = 0 để kiểm tra phần dư
 
-    cmp number, 2
-        jl not_prime
+        cmp number, 2 ; Nếu number < 2 thì number không là số nguyên tố
+            jl not_prime
 
-    check_divisible:
-        cmp bl, number   ; So sánh giá trị của bl với số cần kiểm tra
-        jge is_prime   ; Nếu bl >= số cần kiểm tra, số là số nguyên tố
+        check_divisible:
+            cmp bl, number   ; So sánh giá trị của bl với số cần kiểm tra
+            jge is_prime   ; Nếu bl >= số cần kiểm tra, số là số nguyên tố
 
-        mov al, number   ; Di chuyển số cần kiểm tra vào thanh ghi ax
-        mov ah, 0
-        div bl       ; Chia ax cho bl, phần nguyên trong al, phần dư trong ah
-        cmp ah, 0    ; Kiểm tra phần dư
-        je not_prime  ; Nếu phần dư bằng 0, số không phải là số nguyên tố
-        inc bl       ; Tăng giá trị của bl để kiểm tra số tiếp theo
-        jmp check_divisible
+            mov al, number   ; Di chuyển số cần kiểm tra vào thanh ghi ax
+            mov ah, 0
+            div bl       ; Chia ax cho bl, phần nguyên trong al, phần dư trong ah
+            cmp ah, 0    ; Kiểm tra phần dư
+            je not_prime  ; Nếu phần dư bằng 0, số không phải là số nguyên tố
+            inc bl       ; Tăng giá trị của bl để kiểm tra số tiếp theo
+            jmp check_divisible
 
-    not_prime:
-        call display_notification_3
-        jmp exit_check_prime
+        not_prime:
+            call display_notification_3
+            jmp exit_check_prime
 
-    is_prime:
-        call display_notification_2
-        jmp exit_check_prime
+        is_prime:
+            call display_notification_2
+            jmp exit_check_prime
 
-    exit_check_prime:
-        ret
+        exit_check_prime:
+            ret
     check_prime endp
 
     ;========= Display notification 1 =========;
