@@ -9,6 +9,8 @@
     ;===================== Main =====================;
     main proc
         call load_data
+        call display_notification_1
+        call read_number
         call check_prime
         call exit_program
     main endp
@@ -20,13 +22,11 @@
         ret
     load_data endp
 
-    ;===================== Solve=====================;
-    check_prime proc
-        call display_notification_1
-        mov number, 0
-        call read_number
+    ;===================== Read number =====================;
 
-        ; Kiểm tra xem số nhập vào có phải là số nguyên tố hay không
+    ;===================== Solve=====================;
+    ; Kiểm tra xem số nhập vào có phải là số nguyên tố hay không
+    check_prime proc
         mov bl, 2     ; Bắt đầu kiểm tra từ số 2
         mov dx, 0     ; Khởi tạo dx = 0 để kiểm tra phần dư
 
