@@ -37,8 +37,8 @@
         check_divisible:
             mov al, bl
             mul bl
-            cmp al, number   ; So sánh giá trị của bl với số cần kiểm tra
-            jg is_prime   ; Nếu bl > số cần kiểm tra, số là số nguyên tố
+            cmp al, number   ; So sánh giá trị của bl*bl với số cần kiểm tra
+            jg is_prime   ; Nếu bl*bl > số cần kiểm tra, số là số nguyên tố
 
             mov al, number   ; Di chuyển số cần kiểm tra vào thanh ghi ax
             mov ah, 0
@@ -48,16 +48,16 @@
             inc bl       ; Tăng giá trị của bl để kiểm tra số tiếp theo
             jmp check_divisible
 
-        not_prime:
-            call display_notification_3
-            jmp exit_check_prime
+            not_prime:
+                call display_notification_3
+                jmp exit_check_prime
 
-        is_prime:
-            call display_notification_2
-            jmp exit_check_prime
+            is_prime:
+                call display_notification_2
+                jmp exit_check_prime
 
-        exit_check_prime:
-            ret
+            exit_check_prime:
+                ret
     check_prime endp
 
     ;========= Display notification 1 =========;
