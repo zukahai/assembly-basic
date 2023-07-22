@@ -22,8 +22,6 @@
         ret
     load_data endp
 
-    ;===================== Read number =====================;
-
     ;===================== Solve=====================;
     ; Kiểm tra xem số nhập vào có phải là số nguyên tố hay không
     check_prime proc
