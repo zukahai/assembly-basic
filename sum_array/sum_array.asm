@@ -15,8 +15,8 @@
         call display_result
         call exit_program
     main endp
-    
-    ;===================== Load data =====================;
+
+    ;================= Load data ====================;
     load_data proc
         mov ax, @data
         mov ds, ax
