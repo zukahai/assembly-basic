@@ -27,8 +27,8 @@
     ;===================== Solve=====================;
     ; Kiểm tra xem số nhập vào có phải là số nguyên tố hay không
     check_prime proc
-        mov bl, 2     ; Bắt đầu kiểm tra từ số 2
-        mov dx, 0     ; Khởi tạo dx = 0 để kiểm tra phần dư
+        mov bl, 2     
+        mov dx, 0     
 
         ; Nếu number < 2 thì number không phải là số nguyên tố
         cmp number, 2
@@ -37,15 +37,15 @@
         check_divisible:
             mov al, bl
             mul bl
-            cmp al, number   ; So sánh giá trị của bl*bl với số cần kiểm tra
-            jg is_prime   ; Nếu bl*bl > số cần kiểm tra, số là số nguyên tố
+            cmp al, number  
+            jg is_prime   
 
-            mov al, number   ; Di chuyển số cần kiểm tra vào thanh ghi ax
+            mov al, number  
             mov ah, 0
-            div bl       ; Chia ax cho bl, phần nguyên trong al, phần dư trong ah
-            cmp ah, 0    ; Kiểm tra phần dư
-            je not_prime  ; Nếu phần dư bằng 0, số không phải là số nguyên tố
-            inc bl       ; Tăng giá trị của bl để kiểm tra số tiếp theo
+            div bl  
+            cmp ah, 0   
+            je not_prime 
+            inc bl
             jmp check_divisible
 
             not_prime:
