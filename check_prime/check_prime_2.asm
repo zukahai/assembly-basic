@@ -3,7 +3,7 @@
 .data
     tb1 db 'Enter a number : $'
     tb2 db 13, 10, 'Number is prime $'
-    tb3 db 13, 10, 'Numbers not is prime : $'
+    tb3 db 13, 10, 'Numbers is not prime : $'
     number db 0
 .code
     ;===================== Main =====================;
