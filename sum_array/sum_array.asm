@@ -6,7 +6,7 @@
     tb3 db 13, 10, 'Sum numbers of array is : $'
     number db 0
     number_of_array db 0
-    sum db 0
+    sum db 0 
 .code
     ;===================== Main =====================;
     main proc
